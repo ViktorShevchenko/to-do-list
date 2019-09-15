@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		li {
+			padding .5rem;
+			line-height: 2.5;
+		}
+	</style>
+	<title>To-Do list</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+    	<div class="col"></div>
+    	<div class="col-8 mt-4">
+      		<h1 class="d-flex justify-content-center">To-Do List</h1>
+				<form id='ourForm' class="d-flex justify-content-center mt-3">
+					<input id='ourField' class="px-2" type='text' autocomplete='off'>
+					<button class="btn btn-outline-success ml-2">Create a task</button>
+				</form>
+			<h3 class="d-flex justify-content-center mt-3">Tasks:</h3>
+			<ul id='ourList' class="list-group"></ul>
+    	</div>
+    	<div class="col"></div>
+  	</div>
+</div>
+
+<script>
+	let ourList = document.getElementById('ourList');
+	let ourField = document.getElementById('ourField');
+	let ourForm = document.getElementById('ourForm');
+
+	ourForm.addEventListener('submit', (e) => {
+		e.preventDefault();
+		createItem(ourField.value);
+	});
+	function createItem(formInput){
+		let ourHTML = `<li class="list-group-item d-flex justify-content-center">${formInput}<button type="button" class="btn btn-outline-warning ml-2" onclick='deleteItem(this)'>Delete task</button></li>`;
+			ourList.insertAdjacentHTML("beforeend", ourHTML);
+			ourField.value = '';
+			ourField.focus();
+		}
+
+	function deleteItem(elementToDelete){
+		elementToDelete.parentElement.remove();
+	}
+</script>
+</body>
+</html>
